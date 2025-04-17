@@ -222,30 +222,87 @@
                 <img src="https://files.catbox.moe/pczy7t.jpg" alt="OVO" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
             </div>
 
-            <div class="payment-method" onclick="openModal('https://files.catbox.moe/2ppy45.jpg')">
+            <div class="payment-method">
     <span>📱 QRIS: Scan & Pay 📷</span>
-    <img src="https://files.catbox.moe/2ppy45.jpg" alt="QRIS" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
+    <img src="https://files.catbox.moe/2ppy45.jpg" alt="QRIS" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;" onclick="openModal('https://files.catbox.moe/2ppy45.jpg')">
 </div>
 
 <!-- Modal for QRIS -->
 <div id="qrisModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
     <img id="modalImage" class="modal-content">
+    <a id="downloadQRIS" download="QRIS-Payment.jpg" class="download-button">Download QRIS</a>
 </div>
 
+<!-- Styles for Modal and Download Button -->
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 8px;
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .download-button {
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        color: white;
+        background-color: #007bff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .download-button:hover {
+        background-color: #0056b3;
+    }
+
+    .modal-content:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<!-- JavaScript for Modal and Download -->
 <script>
     function openModal(imageSrc) {
         const modal = document.getElementById("qrisModal");
         const modalImage = document.getElementById("modalImage");
+        const downloadLink = document.getElementById("downloadQRIS");
+
         modal.style.display = "block";
         modalImage.src = imageSrc;
+        downloadLink.href = imageSrc; // Set the download link to the image source
     }
 
     function closeModal() {
         const modal = document.getElementById("qrisModal");
         modal.style.display = "none";
     }
-
 </script>
 
             <!-- Success Box Notification -->
