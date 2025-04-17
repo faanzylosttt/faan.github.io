@@ -227,6 +227,21 @@
             margin-top: 20px;
             font-size: 1rem;
         }
+
+        /* Rainbow animation for Footer */
+        @keyframes textRainbow {
+            0% { color: red; }
+            16% { color: orange; }
+            33% { color: yellow; }
+            50% { color: green; }
+            66% { color: blue; }
+            83% { color: indigo; }
+            100% { color: violet; }
+        }
+
+        .footer span {
+            animation: textRainbow 3s infinite;
+        }
     </style>
 </head>
 <body>
@@ -277,6 +292,9 @@
         </span>
         <p>Tersalin!</p>
     </div>
+
+    <!-- Snowflakes -->
+    <div id="snowflakes"></div>
 
     <!-- Footer -->
     <div class="footer">
