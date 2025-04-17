@@ -17,64 +17,75 @@
         }
 
         /* Success Box Notification */
-        .success-box {
+        .copy-notification {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #4caf50;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeInOut 2s ease-in-out;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(45deg, #4CAF50, #81C784);
-            color: white;
-            padding: 20px 30px;
-            border-radius: 12px;
-            display: none;
-            align-items: center;
-            gap: 12px;
-            font-family: Arial, sans-serif;
-            font-size: 1.8rem;
+            z-index: 999;
+        }
+
+        .copy-notification p {
+            margin: 10px 0 0 0;
+            font-size: 18px;
             font-weight: bold;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            animation: pulse 1.5s infinite, fadeInOut 3s ease;
-            z-index: 9999;
         }
 
-        .success-icon {
-            font-size: 3rem;
-            animation: bounce 1.5s infinite;
+        /* Checkmark Animation */
+        .checkmark {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            stroke-width: 2;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            box-sizing: border-box;
         }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        .checkmark-circle {
+            fill: none;
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
+        .checkmark-check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+        }
+
+        @keyframes stroke {
             100% {
-                transform: scale(1);
+                stroke-dashoffset: 0;
             }
         }
 
         @keyframes fadeInOut {
             0% {
                 opacity: 0;
-                transform: translate(-50%, -60%) scale(0.8);
+                transform: translateY(-20px);
             }
-            20%, 80% {
+            30% {
                 opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
+                transform: translateY(0);
             }
             100% {
                 opacity: 0;
-                transform: translate(-50%, -40%) scale(1.2);
+                transform: translateY(-20px);
             }
         }
 
@@ -123,76 +134,40 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.9);
-        }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 8px;
-        }
-
-        .modal-content:hover {
-            transform: scale(1.05);
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .download-button {
-            display: block;
-            margin: 20px auto;
-            text-align: center;
+        /* List Styles */
+        .list-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             color: white;
-            background-color: #007bff;
-            padding: 10px 20px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .list-container h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            color: #FFD700;
+        }
+
+        .list-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .list-container ul li {
+            margin: 10px 0;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 5px;
-            text-decoration: none;
             transition: background-color 0.3s ease;
         }
 
-        .download-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Shooting Star Animation */
-        .star {
-            position: fixed;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            animation: shootingStar 2s linear infinite;
-        }
-
-        @keyframes shootingStar {
-            from {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-            to {
-                transform: translate(-100vw, 100vh) scale(0);
-                opacity: 0;
-            }
+        .list-container ul li:hover {
+            background-color: rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
@@ -215,66 +190,45 @@
                 <span>💳 OVO: 082281704226 🌟💎</span>
                 <img src="https://files.catbox.moe/pczy7t.jpg" alt="OVO" style="width: 40px; height: 40px;">
             </div>
-            <div class="payment-method">
-                <span>📱 QRIS: Scan & Pay 📷💵</span>
-                <img src="https://files.catbox.moe/2ppy45.jpg" alt="QRIS" style="width: 40px; height: 40px;" onclick="openModal('https://files.catbox.moe/2ppy45.jpg')">
+
+            <!-- List JASTEB -->
+            <div class="list-container">
+                <h2>📋 LIST JASTEB</h2>
+                <ul>
+                    <li>10K - 100+ RESS</li>
+                    <li>15K - 150+ RESS</li>
+                    <li>20K - 200+ RESS</li>
+                    <li>30K - 500+ RESS</li>
+                    <li>40K - 650+ RESS</li>
+                    <li>50K - 760+ RESS</li>
+                    <li>70K - 999+ RESS</li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <!-- Modal for QRIS -->
-    <div id="qrisModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img id="modalImage" class="modal-content">
-        <a id="downloadQRIS" download="QRIS-Payment.jpg" class="download-button">💾 Download QRIS</a>
-    </div>
-
     <!-- Success Box -->
-    <div class="success-box" id="successBox">
-        <span class="success-icon">✅</span>
-        <span>Tersalin! 🎉</span>
+    <div class="copy-notification" id="copyNotification">
+        <span class="checkmark">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark-circle" cx="26" cy="26" r="25"/>
+                <path class="checkmark-check" fill="none" d="M14 27l10 10L39 16"/>
+            </svg>
+        </span>
+        <p>Tersalin!</p>
     </div>
 
     <script>
-        // Modal Functions
-        function openModal(imageSrc) {
-            const modal = document.getElementById("qrisModal");
-            const modalImage = document.getElementById("modalImage");
-            const downloadLink = document.getElementById("downloadQRIS");
-            modal.style.display = "block";
-            modalImage.src = imageSrc;
-            downloadLink.href = imageSrc;
-        }
-
-        function closeModal() {
-            document.getElementById("qrisModal").style.display = "none";
-        }
-
         // Copy Text Function
         function copyText(text) {
             navigator.clipboard.writeText(text).then(() => {
-                const successBox = document.getElementById('successBox');
-                successBox.style.display = 'flex';
+                const copyNotification = document.getElementById('copyNotification');
+                copyNotification.style.display = 'flex';
                 setTimeout(() => {
-                    successBox.style.display = 'none';
-                }, 3000);
+                    copyNotification.style.display = 'none';
+                }, 2000);
             });
         }
-
-        // Shooting Star Animation
-        function createStar() {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = `${Math.random() * 100}vw`;
-            star.style.top = `${Math.random() * 50}vh`;
-            document.body.appendChild(star);
-
-            setTimeout(() => {
-                star.remove();
-            }, 2000);
-        }
-
-        setInterval(createStar, 500); // Create a new star every 500ms
     </script>
 </body>
 </html>
