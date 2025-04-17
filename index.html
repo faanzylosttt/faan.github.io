@@ -36,7 +36,7 @@
         }
 
         h1 {
-            font-size: 1.8rem; /* Ukuran teks diperkecil */
+            font-size: 2.5rem;
             margin-bottom: 20px;
         }
 
@@ -227,18 +227,6 @@
             margin-top: 20px;
             font-size: 1rem;
         }
-
-        @keyframes textColorChange {
-            0% { color: red; }
-            25% { color: yellow; }
-            50% { color: blue; }
-            75% { color: green; }
-            100% { color: red; }
-        }
-
-        .footer span {
-            animation: textColorChange 5s infinite;
-        }
     </style>
 </head>
 <body>
@@ -267,7 +255,7 @@
 
             <!-- Important Note -->
             <div class="important-note">
-                JANGAN LUPA UNTUK MENGIRIM BUKTI TRANSFER
+                KIRIM BUKTI TRANSFER SUPAYA CEPAT DI PROSES
             </div>
         </div>
     </div>
@@ -279,8 +267,16 @@
         <a id="downloadQRIS" download="QRIS-Payment.jpg" class="download-button">💾 Download QRIS</a>
     </div>
 
-    <!-- Snowflake Animation -->
-    <div id="snowflakes"></div>
+    <!-- Success Notification -->
+    <div class="copy-notification" id="copyNotification">
+        <span class="checkmark">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark-circle" cx="26" cy="26" r="25"/>
+                <path class="checkmark-check" fill="none" d="M14 27l10 10L39 16"/>
+            </svg>
+        </span>
+        <p>Tersalin!</p>
+    </div>
 
     <!-- Footer -->
     <div class="footer">
