@@ -3,107 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAYMENT FAANZY HOSTING</title>
+    <title>🔥 PAYMENT FAANZY HOSTING 💸</title>
     <style>
-        /* Styles for Success Box Notification */
-        .success-box {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #4CAF50;
-            color: white;
-            padding: 16px;
-            border-radius: 8px;
-            display: none;
-            align-items: center;
-            gap: 8px;
-            font-family: Arial;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            animation: slideIn 0.3s ease-out;
-        }
-
-        .checkmark {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: block;
-            stroke-width: 2;
-            stroke: #fff;
-            stroke-miterlimit: 10;
-            animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
-        }
-
-        .checkmark__circle {
-            stroke-dasharray: 166;
-            stroke-dashoffset: 166;
-            stroke-width: 2;
-            stroke-miterlimit: 10;
-            stroke: #fff;
-            fill: none;
-            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-        }
-
-        .checkmark__check {
-            transform-origin: 50% 50%;
-            stroke-dasharray: 48;
-            stroke-dashoffset: 48;
-            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
-        }
-
-        @keyframes stroke {
-            100% {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        @keyframes scale {
-            0%, 100% {
-                transform: none;
-            }
-            50% {
-                transform: scale3d(1.1, 1.1, 1);
-            }
-        }
-
-        @keyframes fill {
-            100% {
-                box-shadow: inset 0px 0px 0px 30px #4CAF50;
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
         /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #ff9a9e);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
+            background: url('https://files.catbox.moe/5bpqir.jpg') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
             color: white;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Success Box Notification */
+        .success-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #4CAF50, #81C784);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            font-family: Arial, sans-serif;
+            font-size: 1.5rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            animation: fadeInOut 3s ease;
+            z-index: 9999;
         }
 
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
+        .success-icon {
+            font-size: 2rem;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            20%, 80% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
         }
 
         .overlay {
@@ -146,239 +105,136 @@
         .payment-method:hover {
             background-color: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
-        .notification {
+        .modal {
             display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 255, 0.8);
-            color: white;
-            padding: 10px 20px;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 600px;
             border-radius: 8px;
-            font-size: 16px;
+        }
+
+        .modal-content:hover {
+            transform: scale(1.05);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
             font-weight: bold;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            animation: fadeInOut 3s ease;
+            cursor: pointer;
         }
 
-        @keyframes fadeInOut {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -60%);
-            }
-            10%, 90% {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -40%);
-            }
+        .download-button {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
         }
 
-        /* Confetti Style */
-        .confetti {
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Shooting Star Animation */
+        .star {
             position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #fff;
-            animation: fall 3s linear infinite;
-            opacity: 0.8;
+            width: 2px;
+            height: 2px;
+            background: white;
             border-radius: 50%;
+            animation: shootingStar 2s linear infinite;
         }
 
-        @keyframes fall {
-            0% { transform: translateY(-50px); }
-            100% { transform: translateY(100vh); }
+        @keyframes shootingStar {
+            from {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: translate(-100vw, 100vh) scale(0);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Canvas for Fire Animation -->
-    <canvas id="fireCanvas"></canvas>
-
-    <!-- Payment Overlay -->
+    <!-- Overlay -->
     <div class="overlay">
         <div class="container">
-            <h1>🔥 PAYMENT FAANZY 🔥</h1>
+            <h1>💰🔥 PAYMENT FAANZY HOSTING 🔥💰</h1>
 
+            <!-- Payment Methods -->
             <div class="payment-method" onclick="copyText('082281704226')">
-                <span>💳 DANA: 082281704226</span>
-                <img src="https://files.catbox.moe/x1tw8u.jpeg" alt="DANA" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
+                <span>💳 DANA: 082281704226 🏦</span>
+                <img src="https://files.catbox.moe/x1tw8u.jpeg" alt="DANA" style="width: 40px; height: 40px;">
             </div>
-
             <div class="payment-method" onclick="copyText('082281704226')">
-                <span>💳 GOPAY: 082281704226 🚀</span>
-                <img src="https://files.catbox.moe/3gig7z.jpg" alt="Gopay" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
+                <span>💳 GOPAY: 082281704226 🚀✨</span>
+                <img src="https://files.catbox.moe/3gig7z.jpg" alt="Gopay" style="width: 40px; height: 40px;">
             </div>
-
             <div class="payment-method" onclick="copyText('082281704226')">
-                <span>💳 OVO: 082281704226 🌟</span>
-                <img src="https://files.catbox.moe/pczy7t.jpg" alt="OVO" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
+                <span>💳 OVO: 082281704226 🌟💎</span>
+                <img src="https://files.catbox.moe/pczy7t.jpg" alt="OVO" style="width: 40px; height: 40px;">
             </div>
-
             <div class="payment-method">
-    <span>📱 QRIS: Scan & Pay 📷</span>
-    <img src="https://files.catbox.moe/2ppy45.jpg" alt="QRIS" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;" onclick="openModal('https://files.catbox.moe/2ppy45.jpg')">
-</div>
-
-<!-- Modal for QRIS -->
-<div id="qrisModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="modalImage" class="modal-content">
-    <a id="downloadQRIS" download="QRIS-Payment.jpg" class="download-button">Download QRIS</a>
-</div>
-
-<!-- Styles for Modal and Download Button -->
-<style>
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.9);
-    }
-
-    .modal-content {
-        margin: auto;
-        display: block;
-        width: 80%;
-        max-width: 600px;
-        border-radius: 8px;
-    }
-
-    .close {
-        position: absolute;
-        top: 20px;
-        right: 35px;
-        color: #fff;
-        font-size: 40px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .download-button {
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        color: white;
-        background-color: #007bff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-    }
-
-    .download-button:hover {
-        background-color: #0056b3;
-    }
-
-    .modal-content:hover {
-        transform: scale(1.05);
-    }
-</style>
-
-<!-- JavaScript for Modal and Download -->
-<script>
-    function openModal(imageSrc) {
-        const modal = document.getElementById("qrisModal");
-        const modalImage = document.getElementById("modalImage");
-        const downloadLink = document.getElementById("downloadQRIS");
-
-        modal.style.display = "block";
-        modalImage.src = imageSrc;
-        downloadLink.href = imageSrc; // Set the download link to the image source
-    }
-
-    function closeModal() {
-        const modal = document.getElementById("qrisModal");
-        modal.style.display = "none";
-    }
-</script>
-
-            <!-- Success Box Notification -->
-            <div class="success-box" id="successBox">
-                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                </svg>
-                <span>Tersalin! 🎉</span>
+                <span>📱 QRIS: Scan & Pay 📷💵</span>
+                <img src="https://files.catbox.moe/2ppy45.jpg" alt="QRIS" style="width: 40px; height: 40px;" onclick="openModal('https://files.catbox.moe/2ppy45.jpg')">
             </div>
         </div>
     </div>
 
+    <!-- Modal for QRIS -->
+    <div id="qrisModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" class="modal-content">
+        <a id="downloadQRIS" download="QRIS-Payment.jpg" class="download-button">💾 Download QRIS</a>
+    </div>
+
+    <!-- Success Box -->
+    <div class="success-box" id="successBox">
+        <span class="success-icon">✅</span>
+        <span>Tersalin! 🎉</span>
+    </div>
+
     <script>
-        // Fire Animation
-        const canvas = document.getElementById('fireCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particlesArray = [];
-        const numberOfParticles = 100;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 5 + 1;
-                this.speedX = Math.random() * 3 - 1.5;
-                this.speedY = Math.random() * 3 - 1.5;
-                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-                    this.x = Math.random() * canvas.width;
-                    this.y = canvas.height;
-                }
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
+        // Modal Functions
+        function openModal(imageSrc) {
+            const modal = document.getElementById("qrisModal");
+            const modalImage = document.getElementById("modalImage");
+            const downloadLink = document.getElementById("downloadQRIS");
+            modal.style.display = "block";
+            modalImage.src = imageSrc;
+            downloadLink.href = imageSrc;
         }
 
-        function init() {
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
+        function closeModal() {
+            document.getElementById("qrisModal").style.display = "none";
         }
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particlesArray.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            init();
-        });
-
-        // Copy Text to Clipboard and Show Success Notification
+        // Copy Text Function
         function copyText(text) {
             navigator.clipboard.writeText(text).then(() => {
                 const successBox = document.getElementById('successBox');
@@ -386,21 +242,23 @@
                 setTimeout(() => {
                     successBox.style.display = 'none';
                 }, 3000);
-
-                // Add Confetti
-                for (let i = 0; i < 100; i++) {
-                    const confetti = document.createElement("div");
-                    confetti.classList.add("confetti");
-                    confetti.style.left = `${Math.random() * 100}vw`;
-                    confetti.style.top = `${Math.random() * -50}vh`;
-                    confetti.style.animationDelay = `${Math.random() * 2}s`;
-                    document.body.appendChild(confetti);
-                    setTimeout(() => confetti.remove(), 3000);
-                }
-            }).catch(err => {
-                alert("Error copying text: " + err);
             });
         }
+
+        // Shooting Star Animation
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 50}vh`;
+            document.body.appendChild(star);
+
+            setTimeout(() => {
+                star.remove();
+            }, 2000);
+        }
+
+        setInterval(createStar, 500); // Create a new star every 500ms
     </script>
 </body>
 </html>
