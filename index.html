@@ -3,74 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
+    <title>PAYMENT FAANZY HOSTING</title>
     <style>
+        /* Styles for Success Box Notification */
+        .success-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            font-family: Arial;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .checkmark {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+        }
+
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #fff;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 30px #4CAF50;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #ff9a9e);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: white;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        .product {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 15px;
-            margin: 10px 0;
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
             display: flex;
+            justify-content: center;
             align-items: center;
         }
-        .product img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            margin-right: 15px;
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
-        .product h3 {
-            margin: 0;
-            font-size: 18px;
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
-        .product p {
-            margin: 5px 0;
+
+        .payment-method {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .payment-method:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .notification {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 255, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            animation: fadeInOut 3s ease;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            10%, 90% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+        }
+
+        /* Confetti Style */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            animation: fall 3s linear infinite;
+            opacity: 0.8;
+            border-radius: 50%;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-50px); }
+            100% { transform: translateY(100vh); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Product List</h1>
-        <div id="product-list">
-            <!-- Products will be listed here -->
+    <!-- Canvas for Fire Animation -->
+    <canvas id="fireCanvas"></canvas>
+
+    <!-- Payment Overlay -->
+    <div class="overlay">
+        <div class="container">
+            <h1>🔥 PAYMENT FAANZY 🔥</h1>
+
+            <div class="payment-method" onclick="copyText('082281704226')">
+                <span>💳 DANA: 082281704226</span>
+                <img src="https://files.catbox.moe/x1tw8u.jpeg" alt="DANA" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
+            </div>
+
+            <div class="payment-method" onclick="copyText('082281704226')">
+                <span>💳 GOPAY: 082281704226 🚀</span>
+                <img src="https://files.catbox.moe/3gig7z.jpg" alt="Gopay" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
+            </div>
+
+            <div class="payment-method" onclick="copyText('082281704226')">
+                <span>💳 OVO: 082281704226 🌟</span>
+                <img src="https://files.catbox.moe/pczy7t.jpg" alt="OVO" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
+            </div>
+
+            <div class="payment-method" onclick="copyText('Scan QRIS for Payment')">
+                <span>📱 QRIS: Scan & Pay 📷</span>
+                <img src="https://files.catbox.moe/2ppy45.jpg" alt="QRIS" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
+            </div>
+
+            <!-- Success Box Notification -->
+            <div class="success-box" id="successBox">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                <span>Tersalin! 🎉</span>
+            </div>
         </div>
     </div>
 
     <script>
-        const products = [];
-        for (let i = 1; i <= 50; i++) {
-            products.push({
-                id: i,
-                name: `Product ${i}`,
-                description: `This is the description for Product ${i}.`,
-                price: `$${(Math.random() * 100 + 1).toFixed(2)}`,
-                image: 'https://via.placeholder.com/100' // Placeholder image
-            });
+        // Fire Animation
+        const canvas = document.getElementById('fireCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particlesArray = [];
+        const numberOfParticles = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 5 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
         }
 
-        const productList = document.getElementById('product-list');
+        function init() {
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
 
-        products.forEach(product => {
-            const productDiv = document.createElement('div');
-            productDiv.className = 'product';
-            productDiv.innerHTML = `
-                <img src="${product.image}" alt="${product.name}">
-                <div>
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <p><strong>Price:</strong> ${product.price}</p>
-                </div>
-            `;
-            productList.appendChild(productDiv);
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particlesArray.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
         });
+
+        // Copy Text to Clipboard and Show Success Notification
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const successBox = document.getElementById('successBox');
+                successBox.style.display = 'flex';
+                setTimeout(() => {
+                    successBox.style.display = 'none';
+                }, 3000);
+
+                // Add Confetti
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement("div");
+                    confetti.classList.add("confetti");
+                    confetti.style.left = `${Math.random() * 100}vw`;
+                    confetti.style.top = `${Math.random() * -50}vh`;
+                    confetti.style.animationDelay = `${Math.random() * 2}s`;
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 3000);
+                }
+            }).catch(err => {
+                alert("Error copying text: " + err);
+            });
+        }
     </script>
 </body>
 </html>
