@@ -12,46 +12,114 @@
             padding: 0;
             background: url('https://files.catbox.moe/5bpqir.jpg') no-repeat center center fixed;
             background-size: cover;
-            overflow-y: auto; /* Memungkinkan pengguliran vertikal */
+            overflow-y: auto;
             color: white;
         }
 
-        /* List JASTEB */
-        .list-title {
-            text-align: center;
-            margin: 20px 0 10px;
-            font-size: 1.8rem;
-            color: #FFD700;
+        /* Payment Section */
+        .overlay {
+            background: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .list-unstyled {
-            margin: 10px auto;
-            padding: 0;
+        .container {
+            width: 90%;
             max-width: 800px;
-            list-style: none;
-            font-size: 1.2rem;
-            line-height: 1.8;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
 
-        .list-unstyled li {
-            margin: 5px 0;
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
 
-        /* Text Color Animation for Footer */
-        @keyframes textColorChange {
-            0% { color: red; }
-            25% { color: yellow; }
-            50% { color: blue; }
-            75% { color: green; }
-            100% { color: red; }
+        .important-note {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-top: 20px;
         }
 
-        .footer span {
-            animation: textColorChange 5s infinite;
+        /* Payment Methods */
+        .payment-method {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
 
-        /* Success Box Notification */
+        .payment-method:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-content:hover {
+            transform: scale(1.05);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .download-button {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Success Notification */
         .copy-notification {
             display: none;
             align-items: center;
@@ -62,7 +130,6 @@
             padding: 20px 40px;
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            animation: fadeInOut 3s ease-in-out;
             position: fixed;
             top: 50%;
             left: 50%;
@@ -70,6 +137,7 @@
             z-index: 999;
             font-size: 1.2rem;
             font-weight: bold;
+            animation: fadeInOut 3s ease-in-out;
         }
 
         .checkmark {
@@ -81,7 +149,7 @@
             stroke-miterlimit: 10;
             box-sizing: border-box;
             margin-bottom: 10px;
-            animation: popIn 0.5s ease-out forwards;
+            animation: checkmarkAnimation 0.5s ease-out forwards;
         }
 
         .checkmark-circle {
@@ -123,58 +191,13 @@
             }
         }
 
-        @keyframes popIn {
+        @keyframes checkmarkAnimation {
             0% {
                 transform: scale(0);
             }
             100% {
                 transform: scale(1);
             }
-        }
-
-        /* Container Styles */
-        .overlay {
-            margin-top: 10px; /* Mengurangi jarak antara list-container dan overlay */
-            background: rgba(0, 0, 0, 0.7);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        /* Payment Methods */
-        .payment-method {
-            margin: 15px 0;
-            padding: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        }
-
-        .payment-method:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
         /* Snow Animation */
@@ -198,58 +221,7 @@
             }
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.9);
-        }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 8px;
-        }
-
-        .modal-content:hover {
-            transform: scale(1.05);
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .download-button {
-            display: block;
-            margin: 20px auto;
-            text-align: center;
-            color: white;
-            background-color: #007bff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .download-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Footer Styles */
+        /* Footer */
         .footer {
             text-align: center;
             margin-top: 20px;
@@ -258,19 +230,7 @@
     </style>
 </head>
 <body>
-    <!-- List JASTEB -->
-    <h2 class="list-title">📋 LIST JASTEB</h2>
-    <ul class="list-unstyled">
-        <li>10K - 100+ RESS</li>
-        <li>15K - 150+ RESS</li>
-        <li>20K - 200+ RESS</li>
-        <li>30K - 500+ RESS</li>
-        <li>40K - 650+ RESS</li>
-        <li>50K - 760+ RESS</li>
-        <li>70K - 999+ RESS</li>
-    </ul>
-
-    <!-- Overlay -->
+    <!-- Payment Section -->
     <div class="overlay">
         <div class="container">
             <h1>💰🔥 PAYMENT FAANZY HOSTING 🔥💰</h1>
@@ -292,6 +252,11 @@
                 <span>📱 QRIS: Scan & Pay 📷💵</span>
                 <img src="https://files.catbox.moe/2ppy45.jpg" alt="QRIS" style="width: 40px; height: 40px;">
             </div>
+
+            <!-- Important Note -->
+            <div class="important-note">
+                KIRIM BUKTI TRANSFER SUPAYA CEPAT DI PROSES
+            </div>
         </div>
     </div>
 
@@ -302,7 +267,7 @@
         <a id="downloadQRIS" download="QRIS-Payment.jpg" class="download-button">💾 Download QRIS</a>
     </div>
 
-    <!-- Success Box -->
+    <!-- Success Notification -->
     <div class="copy-notification" id="copyNotification">
         <span class="checkmark">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -346,7 +311,6 @@
 
         // Snowflake Animation
         function createSnowflakes() {
-            const snowflakes = document.getElementById('snowflakes');
             const snowflake = document.createElement('div');
             snowflake.className = 'snowflake';
             snowflake.textContent = '❄';
@@ -354,7 +318,7 @@
             snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
             snowflake.style.opacity = Math.random();
             snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
-            snowflakes.appendChild(snowflake);
+            document.body.appendChild(snowflake);
 
             setTimeout(() => {
                 snowflake.remove();
