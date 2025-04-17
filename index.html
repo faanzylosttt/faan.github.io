@@ -30,15 +30,16 @@
             align-items: center;
             gap: 12px;
             font-family: Arial, sans-serif;
-            font-size: 1.5rem;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            animation: fadeInOut 3s ease;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            animation: pulse 1.5s infinite, fadeInOut 3s ease;
             z-index: 9999;
         }
 
         .success-icon {
-            font-size: 2rem;
-            animation: bounce 1s infinite;
+            font-size: 3rem;
+            animation: bounce 1.5s infinite;
         }
 
         @keyframes bounce {
@@ -50,21 +51,34 @@
             }
         }
 
-        @keyframes fadeInOut {
+        @keyframes pulse {
             0% {
-                opacity: 0;
-                transform: translate(-50%, -60%);
+                transform: scale(1);
             }
-            20%, 80% {
-                opacity: 1;
-                transform: translate(-50%, -50%);
+            50% {
+                transform: scale(1.1);
             }
             100% {
-                opacity: 0;
-                transform: translate(-50%, -40%);
+                transform: scale(1);
             }
         }
 
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(0.8);
+            }
+            20%, 80% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -40%) scale(1.2);
+            }
+        }
+
+        /* Container Styles */
         .overlay {
             background: rgba(0, 0, 0, 0.7);
             min-height: 100vh;
@@ -89,6 +103,7 @@
             margin-bottom: 20px;
         }
 
+        /* Payment Methods */
         .payment-method {
             margin: 15px 0;
             padding: 15px;
@@ -108,6 +123,7 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
