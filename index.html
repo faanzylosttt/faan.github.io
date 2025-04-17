@@ -16,7 +16,7 @@
             color: white;
         }
 
-        /* Text Color Animation */
+        /* Text Color Animation for Footer */
         @keyframes textColorChange {
             0% { color: red; }
             25% { color: yellow; }
@@ -25,7 +25,7 @@
             100% { color: red; }
         }
 
-        h1, .payment-method span, .list-container h2, .list-container ul li {
+        .footer span {
             animation: textColorChange 5s infinite;
         }
 
@@ -52,54 +52,6 @@
             margin: 10px 0 0 0;
             font-size: 18px;
             font-weight: bold;
-        }
-
-        /* Checkmark Animation */
-        .checkmark {
-            width: 50px;
-            height: 50px;
-            display: inline-block;
-            stroke-width: 2;
-            stroke: #fff;
-            stroke-miterlimit: 10;
-            box-sizing: border-box;
-        }
-
-        .checkmark-circle {
-            fill: none;
-            stroke-dasharray: 166;
-            stroke-dashoffset: 166;
-            stroke-width: 2;
-            stroke-miterlimit: 10;
-            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-        }
-
-        .checkmark-check {
-            transform-origin: 50% 50%;
-            stroke-dasharray: 48;
-            stroke-dashoffset: 48;
-            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
-        }
-
-        @keyframes stroke {
-            100% {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        @keyframes fadeInOut {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            30% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
         }
 
         /* Container Styles */
@@ -217,6 +169,13 @@
                 opacity: 0;
             }
         }
+
+        /* Footer Styles */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -226,7 +185,7 @@
     <!-- Overlay -->
     <div class="overlay">
         <div class="container">
-            <h1>PAY FAANZYHOST</h1>
+            <h1>💰🔥 PAYMENT FAANZY HOSTING 🔥💰</h1>
 
             <!-- Payment Methods -->
             <div class="payment-method" onclick="copyText('082281704226')">
@@ -278,6 +237,11 @@
             </svg>
         </span>
         <p>Tersalin!</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <span>🌟 Website by Faanzy Market - Contact: 082281704226 🌟</span>
     </div>
 
     <script>
