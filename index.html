@@ -222,10 +222,31 @@
                 <img src="https://files.catbox.moe/pczy7t.jpg" alt="OVO" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
             </div>
 
-            <div class="payment-method" onclick="copyText('Scan QRIS for Payment')">
-                <span>📱 QRIS: Scan & Pay 📷</span>
-                <img src="https://files.catbox.moe/2ppy45.jpg" alt="QRIS" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
-            </div>
+            <div class="payment-method" onclick="openModal('https://files.catbox.moe/2ppy45.jpg')">
+    <span>📱 QRIS: Scan & Pay 📷</span>
+    <img src="https://files.catbox.moe/2ppy45.jpg" alt="QRIS" style="width: 40px; height: 40px; margin-left: 10px; border-radius: 5px;">
+</div>
+
+<!-- Modal for QRIS -->
+<div id="qrisModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImage" class="modal-content">
+</div>
+
+<script>
+    function openModal(imageSrc) {
+        const modal = document.getElementById("qrisModal");
+        const modalImage = document.getElementById("modalImage");
+        modal.style.display = "block";
+        modalImage.src = imageSrc;
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("qrisModal");
+        modal.style.display = "none";
+    }
+
+</script>
 
             <!-- Success Box Notification -->
             <div class="success-box" id="successBox">
