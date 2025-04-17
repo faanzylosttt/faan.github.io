@@ -17,40 +17,25 @@
         }
 
         /* List JASTEB */
-        .list-container {
-            margin: 1px auto; /* Mengurangi jarak vertikal */
-            padding: 20px;
-            max-width: 800px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            color: white;
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-
-        .list-container h2 {
+        .list-title {
             text-align: center;
-            margin-bottom: 10px;
+            margin: 20px 0 10px;
             font-size: 1.8rem;
             color: #FFD700;
         }
 
-        .list-container ul {
-            list-style: none;
+        .list-unstyled {
+            margin: 10px auto;
             padding: 0;
+            max-width: 800px;
+            list-style: none;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: center;
         }
 
-        .list-container ul li {
-            margin: 10px 0;
-            padding: 5px 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .list-container ul li:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+        .list-unstyled li {
+            margin: 5px 0;
         }
 
         /* Text Color Animation for Footer */
@@ -149,7 +134,7 @@
 
         /* Container Styles */
         .overlay {
-            margin-top: 5px; /* Mengurangi jarak antara list-container dan overlay */
+            margin-top: 10px; /* Mengurangi jarak antara list-container dan overlay */
             background: rgba(0, 0, 0, 0.7);
             min-height: 100vh;
             display: flex;
@@ -274,18 +259,16 @@
 </head>
 <body>
     <!-- List JASTEB -->
-    <div class="list-container">
-        <h2>📋 LIST JASTEB</h2>
-        <ul>
-            <li>10K - 100+ RESS</li>
-            <li>15K - 150+ RESS</li>
-            <li>20K - 200+ RESS</li>
-            <li>30K - 500+ RESS</li>
-            <li>40K - 650+ RESS</li>
-            <li>50K - 760+ RESS</li>
-            <li>70K - 999+ RESS</li>
-        </ul>
-    </div>
+    <h2 class="list-title">📋 LIST JASTEB</h2>
+    <ul class="list-unstyled">
+        <li>10K - 100+ RESS</li>
+        <li>15K - 150+ RESS</li>
+        <li>20K - 200+ RESS</li>
+        <li>30K - 500+ RESS</li>
+        <li>40K - 650+ RESS</li>
+        <li>50K - 760+ RESS</li>
+        <li>70K - 999+ RESS</li>
+    </ul>
 
     <!-- Overlay -->
     <div class="overlay">
