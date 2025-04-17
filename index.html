@@ -16,6 +16,19 @@
             color: white;
         }
 
+        /* Text Color Animation */
+        @keyframes textColorChange {
+            0% { color: red; }
+            25% { color: yellow; }
+            50% { color: blue; }
+            75% { color: green; }
+            100% { color: red; }
+        }
+
+        h1, .payment-method span, .list-container h2, .list-container ul li {
+            animation: textColorChange 5s infinite;
+        }
+
         /* Success Box Notification */
         .copy-notification {
             display: none;
@@ -109,7 +122,6 @@
 
         h1 {
             text-align: center;
-            color: #fff;
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
@@ -134,44 +146,83 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
-        /* List Styles */
-        .list-container {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            color: white;
-            font-size: 1.2rem;
-            line-height: 1.8;
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
         }
 
-        .list-container h2 {
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+        }
+
+        .modal-content:hover {
+            transform: scale(1.05);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .download-button {
+            display: block;
+            margin: 20px auto;
             text-align: center;
-            margin-bottom: 10px;
-            font-size: 1.8rem;
-            color: #FFD700;
-        }
-
-        .list-container ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .list-container ul li {
-            margin: 10px 0;
-            padding: 5px 10px;
-            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            background-color: #007bff;
+            padding: 10px 20px;
             border-radius: 5px;
+            text-decoration: none;
             transition: background-color 0.3s ease;
         }
 
-        .list-container ul li:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Snow Animation */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1.5em;
+            animation: fall linear infinite;
+            z-index: 9999;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Snowflakes -->
+    <div id="snowflakes"></div>
+
     <!-- Overlay -->
     <div class="overlay">
         <div class="container">
@@ -190,6 +241,10 @@
                 <span>💳 OVO: 082281704226 🌟💎</span>
                 <img src="https://files.catbox.moe/pczy7t.jpg" alt="OVO" style="width: 40px; height: 40px;">
             </div>
+            <div class="payment-method" onclick="openModal('https://files.catbox.moe/2ppy45.jpg')">
+                <span>📱 QRIS: Scan & Pay 📷💵</span>
+                <img src="https://files.catbox.moe/2ppy45.jpg" alt="QRIS" style="width: 40px; height: 40px;">
+            </div>
 
             <!-- List JASTEB -->
             <div class="list-container">
@@ -207,6 +262,13 @@
         </div>
     </div>
 
+    <!-- Modal for QRIS -->
+    <div id="qrisModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" class="modal-content">
+        <a id="downloadQRIS" download="QRIS-Payment.jpg" class="download-button">💾 Download QRIS</a>
+    </div>
+
     <!-- Success Box -->
     <div class="copy-notification" id="copyNotification">
         <span class="checkmark">
@@ -219,6 +281,20 @@
     </div>
 
     <script>
+        // Modal Functions
+        function openModal(imageSrc) {
+            const modal = document.getElementById("qrisModal");
+            const modalImage = document.getElementById("modalImage");
+            const downloadLink = document.getElementById("downloadQRIS");
+            modal.style.display = "block";
+            modalImage.src = imageSrc;
+            downloadLink.href = imageSrc;
+        }
+
+        function closeModal() {
+            document.getElementById("qrisModal").style.display = "none";
+        }
+
         // Copy Text Function
         function copyText(text) {
             navigator.clipboard.writeText(text).then(() => {
@@ -229,6 +305,25 @@
                 }, 2000);
             });
         }
+
+        // Snowflake Animation
+        function createSnowflakes() {
+            const snowflakes = document.getElementById('snowflakes');
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.textContent = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            snowflakes.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflakes, 100);
     </script>
 </body>
 </html>
