@@ -66,16 +66,75 @@
         }
 
         /* Enhanced Notification */
-        .copy-notification {
+        #copyNotification {
+            display: none; /* Tidak tampil kecuali dipanggil */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
             background: rgba(40, 167, 69, 0.95);
-            border: 2px solid #fff;
-            padding: 1.5rem 3rem;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeInOut 3s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10%, 90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+
+        /* QRIS Modal Improvement */
+        .modal {
+            display: none; /* Modal tidak ditampilkan secara default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+            display: block;
+            margin: auto;
+            border: 3px solid var(--primary);
+            border-radius: 20px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            padding: 5px 10px;
         }
 
         /* Snowflake Animation */
         .snowflake {
             color: #E8F4FF;
             text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            position: absolute;
+            top: 0;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px); }
+            100% { transform: translateY(100vh); }
         }
 
         /* Footer with Animation */
@@ -94,12 +153,6 @@
             margin-top: 1.5rem;
         }
 
-        /* QRIS Modal Improvement */
-        .modal-content {
-            border: 3px solid var(--primary);
-            border-radius: 20px;
-        }
-
         @media (max-width: 768px) {
             .container {
                 margin: 1rem;
@@ -115,36 +168,28 @@
     </style>
 </head>
 <body>
-    <!-- Semua Fitur Asli Dipertahankan -->
     <div class="container">
         <h1>🔥 PAYMENT FAANZY 💸</h1>
 
         <div class="payment-grid">
-            <!-- DANA -->
             <div class="payment-card" onclick="copyText('082281704226')">
                 <div>
                     <span>💳 DANA: 082281704226 🏦</span>
                 </div>
                 <img src="https://files.catbox.moe/x1tw8u.jpeg" alt="DANA">
             </div>
-
-            <!-- GOPAY -->
             <div class="payment-card" onclick="copyText('082281704226')">
                 <div>
                     <span>💳 GOPAY: 082281704226 🚀✨</span>
                 </div>
                 <img src="https://files.catbox.moe/3gig7z.jpg" alt="Gopay">
             </div>
-
-            <!-- OVO -->
             <div class="payment-card" onclick="copyText('082281704226')">
                 <div>
                     <span>💳 OVO: 082281704226 🌟💎</span>
                 </div>
                 <img src="https://files.catbox.moe/pczy7t.jpg" alt="OVO">
             </div>
-
-            <!-- QRIS -->
             <div class="payment-card" onclick="openModal('https://files.catbox.moe/2ppy45.jpg')">
                 <div>
                     <span>📱 QRIS: Scan & Pay 📷💵</span>
@@ -153,60 +198,36 @@
             </div>
         </div>
 
-        <!-- Important Note -->
-        <div class="important-note" style="
-            font-size: 1.2rem;
-            padding: 1.5rem;
-            background: rgba(255, 107, 107, 0.2);
-            border-radius: 15px;
-            text-align: center;
-            margin: 2rem 0;
-        ">
+        <div class="important-note" style="font-size: 1.2rem; padding: 1.5rem; background: rgba(255, 107, 107, 0.2); border-radius: 15px; text-align: center; margin: 2rem 0;">
             🚨 JANGAN LUPA UNTUK MENGIRIM BUKTI TRANSFER 🚨
         </div>
 
-        <!-- Audio Player -->
         <audio controls autoplay loop>
             <source src="https://files.catbox.moe/i2iv4x.mp3" type="audio/mpeg">
-            Browser Anda tidak mendukung elemen audio.
+            Browser Anda tidak mendukung elemen audio. Silakan unduh file <a href="https://files.catbox.moe/i2iv4x.mp3">di sini</a>.
         </audio>
     </div>
 
-    <!-- Modal QRIS (Dipertahankan dengan improvement) -->
     <div id="qrisModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <img id="modalImage" class="modal-content">
         <a id="downloadQRIS" download="QRIS-Payment.jpg" class="download-button">💾 Download QRIS</a>
     </div>
 
-    <!-- Notification -->
-    <div class="copy-notification" id="copyNotification">
-        <span class="checkmark">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                <circle class="checkmark-circle" cx="26" cy="26" r="25"/>
-                <path class="checkmark-check" fill="none" d="M14 27l10 10L39 16"/>
-            </svg>
-        </span>
+    <div id="copyNotification">
         <p>✅ Tersalin!</p>
     </div>
 
-    <!-- Snowflakes -->
-    <div id="snowflakes"></div>
-
-    <!-- Footer -->
     <div class="footer">
         <span>🌟 Website by Faanzy Market - Contact: 082281704226 🌟</span>
     </div>
 
     <script>
-        // Semua Fungsi JavaScript Asli Dipertahankan
         function copyText(text) {
             navigator.clipboard.writeText(text).then(() => {
                 const copyNotification = document.getElementById('copyNotification');
                 copyNotification.style.display = 'flex';
-                setTimeout(() => {
-                    copyNotification.style.display = 'none';
-                }, 3000);
+                setTimeout(() => { copyNotification.style.display = 'none'; }, 3000);
             });
         }
 
@@ -214,7 +235,7 @@
             const modal = document.getElementById("qrisModal");
             const modalImage = document.getElementById("modalImage");
             const downloadLink = document.getElementById("downloadQRIS");
-            modal.style.display = "block";
+            modal.style.display = "flex";
             modalImage.src = imageSrc;
             downloadLink.href = imageSrc;
         }
@@ -223,7 +244,6 @@
             document.getElementById("qrisModal").style.display = "none";
         }
 
-        // Snowflake Animation
         function createSnowflakes() {
             const snowflake = document.createElement('div');
             snowflake.className = 'snowflake';
@@ -233,8 +253,10 @@
             snowflake.style.opacity = Math.random();
             snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
             document.body.appendChild(snowflake);
-
             setTimeout(() => snowflake.remove(), 5000);
         }
 
-        setInterval(createSnowfl
+        setInterval(createSnowflakes, 500);
+    </script>
+</body>
+</html>
