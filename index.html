@@ -53,7 +53,6 @@
             padding: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -62,9 +61,29 @@
         }
 
         .payment-method:hover {
-            background-color: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Warna unik untuk setiap metode pembayaran */
+        .payment-method.dana {
+            background-color: rgba(30, 144, 255, 0.2); /* Biru untuk DANA */
+            border-color: rgba(30, 144, 255, 0.5);
+        }
+
+        .payment-method.gopay {
+            background-color: rgba(60, 179, 113, 0.2); /* Hijau untuk GOPAY */
+            border-color: rgba(60, 179, 113, 0.5);
+        }
+
+        .payment-method.ovo {
+            background-color: rgba(138, 43, 226, 0.2); /* Ungu untuk OVO */
+            border-color: rgba(138, 43, 226, 0.5);
+        }
+
+        .payment-method.qris {
+            background-color: rgba(255, 165, 0, 0.2); /* Oranye untuk QRIS */
+            border-color: rgba(255, 165, 0, 0.5);
         }
 
         /* Modal Styles */
@@ -228,7 +247,6 @@
             font-size: 1rem;
         }
 
-        /* Rainbow animation for Footer */
         @keyframes textRainbow {
             0% { color: red; }
             16% { color: orange; }
@@ -251,19 +269,19 @@
             <h1>PAYMENT FAANZY</h1>
 
             <!-- Payment Methods -->
-            <div class="payment-method" onclick="copyText('082281704226')">
+            <div class="payment-method dana" onclick="copyText('082281704226')">
                 <span>💳 DANA: 082281704226 🏦</span>
                 <img src="https://files.catbox.moe/x1tw8u.jpeg" alt="DANA" style="width: 40px; height: 40px;">
             </div>
-            <div class="payment-method" onclick="copyText('082281704226')">
+            <div class="payment-method gopay" onclick="copyText('082281704226')">
                 <span>💳 GOPAY: 082281704226 🚀✨</span>
                 <img src="https://files.catbox.moe/3gig7z.jpg" alt="Gopay" style="width: 40px; height: 40px;">
             </div>
-            <div class="payment-method" onclick="copyText('082281704226')">
+            <div class="payment-method ovo" onclick="copyText('082281704226')">
                 <span>💳 OVO: 082281704226 🌟💎</span>
                 <img src="https://files.catbox.moe/pczy7t.jpg" alt="OVO" style="width: 40px; height: 40px;">
             </div>
-            <div class="payment-method" onclick="openModal('https://files.catbox.moe/2ppy45.jpg')">
+            <div class="payment-method qris" onclick="openModal('https://files.catbox.moe/2ppy45.jpg')">
                 <span>📱 QRIS: Scan & Pay 📷💵</span>
                 <img src="https://files.catbox.moe/2ppy45.jpg" alt="QRIS" style="width: 40px; height: 40px;">
             </div>
